@@ -4,7 +4,7 @@ export const emails = [
     email: "admin@gmail.com",
     name: "Admin",
     role: "admin",
-    eAddress: "0xa1C8219123c9Ac63a5fc17Eb9c432Bb8581b916d",
+    eAddress: "0xe5ebA9E7EeC97a7D6513F50Acb9d525BaB7A0AAD",
   },
   {
     email: "voter1@gmail.com",

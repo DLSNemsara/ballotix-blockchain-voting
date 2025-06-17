@@ -9,17 +9,30 @@ import { sendEmail as sendEmailProd } from "../utils/sendEmailProd.js";
 // Route -> /api/election/startElection
 export const startElection = catchAsyncError(async (req, res, next) => {
   const users = await User.find();
+  let errors = [];
 
-  // Send emails and update users in parallel
   await Promise.all(
     users.map(async (user) => {
-      // Send email about election start
-      await electionEmail(user, "Election has started. Login to vote", next);
-
-      // Update user's election status
-      await updateUser(user, true);
+      try {
+        // Send email about election start
+        await electionEmail(user, "Election has started. Login to vote", next);
+        // Update user's election status
+        await updateUser(user, true);
+        console.log(`Updated user ${user.email}: electionOngoing set to true`);
+      } catch (err) {
+        console.error(`Error updating user ${user.email}:`, err);
+        errors.push({ email: user.email, error: err.message });
+      }
     })
   );
+
+  if (errors.length > 0) {
+    return res.status(500).json({
+      success: false,
+      message: "Some user updates failed.",
+      errors,
+    });
+  }
 
   res.status(200).json({
     success: true,
@@ -38,21 +51,35 @@ export const endElection = catchAsyncError(async (req, res, next) => {
   }
 
   const users = await User.find();
+  let errors = [];
 
-  // Send emails and update users in parallel
   await Promise.all(
     users.map(async (user) => {
-      // Send email about election end
-      const message = `Election has ended. Visit ${req.protocol}://${req.get("host")}/results/${address}`;
-      await electionEmail(user, message, next);
-
-      // Update user's election status
-      await updateUser(user, false);
-
-      // Reset user's vote status
-      await updateUserVote(user);
+      try {
+        // Send email about election end
+        const message = `Election has ended. Visit ${req.protocol}://${req.get("host")}/results/${address}`;
+        await electionEmail(user, message, next);
+        // Update user's election status
+        await updateUser(user, false);
+        // Reset user's vote status
+        await updateUserVote(user);
+        console.log(
+          `Updated user ${user.email}: electionOngoing set to false, hasVoted set to false`
+        );
+      } catch (err) {
+        console.error(`Error updating user ${user.email}:`, err);
+        errors.push({ email: user.email, error: err.message });
+      }
     })
   );
+
+  if (errors.length > 0) {
+    return res.status(500).json({
+      success: false,
+      message: "Some user updates failed.",
+      errors,
+    });
+  }
 
   res.status(200).json({
     success: true,

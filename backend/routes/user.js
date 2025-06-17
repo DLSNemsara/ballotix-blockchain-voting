@@ -19,7 +19,7 @@ router.route("/generateOtp").post(generateOTP);
 router.route("/login").post(loginUser);
 
 // Authenticated user routes
-router.route("/logout").get(logoutUser);
+router.route("/logout").get(isAuthenticatedUser, logoutUser);
 router.route("/vote").put(isAuthenticatedUser, vote);
 router.route("/getUser").get(isAuthenticatedUser, getUser);
 router.route("/edit").put(isAuthenticatedUser, editUser);

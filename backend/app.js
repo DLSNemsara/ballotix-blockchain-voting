@@ -16,32 +16,25 @@ const __dirname = path.dirname(__filename);
 // CORS configuration
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://127.0.0.1:5173"], // Updated for Vite's default port
+    origin: "http://localhost:5173",
     credentials: true,
   })
 );
 
-// Additional CORS headers
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
-  res.header("Access-Control-Allow-Headers", true);
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
-  next();
-});
-
 // Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// File upload route
 app.post(
   "/api/upload",
   upload.single("image"),
   catchAsyncError(async (req, res, next) => {
+    console.log("File upload received:", req.file);
+    if (!req.file) {
+      console.log("❌ No file attached");
+      return res.status(400).json({ error: "No file uploaded" });
+    }
     res.json({ file: req.file.path });
   })
 );
