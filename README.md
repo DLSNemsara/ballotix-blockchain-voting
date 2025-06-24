@@ -1,25 +1,21 @@
-# 🗳️ Ballotix – Blockchain-Based Voting System for Organizations
+# Ballotix – Blockchain-Based Voting System for Organizations
 
 Ballotix is a decentralized, secure, and transparent e-voting platform designed to modernize organizational elections. Built using Ethereum smart contracts (Sepolia testnet), the system ensures cryptographic vote integrity, real-time results, and role-based participation via a web-based interface.
 
-> **Tech Focus**: Solidity · React · Node.js · MongoDB · Web3.js · MetaMask · Docker · CI/CD
+**Tech Stack**: Solidity · React · Node.js · MongoDB · Web3.js · MetaMask · Docker · CI/CD
 
----
+## Features
 
-## 🚀 Features
+- **Blockchain-Based Voting**: Smart contracts manage elections, enforce one-vote-per-user, and compute results on Ethereum (Sepolia testnet)
+- **Role-Based Access**: Distinct flows for Admins (create/start/end elections, manage users/candidates) and Voters (OTP login, cast vote)
+- **Wallet Integration**: MetaMask wallet authentication ensures secure vote submission and blockchain interaction
+- **OTP Email Verification**: SendGrid integration for verifying voter identity via email OTP
+- **Real-Time Results**: Frontend listens to blockchain events for live result updates
+- **Secure Media Handling**: Candidate images stored in Cloudinary
+- **Auditability**: Vote transactions are immutable and publicly verifiable on the Ethereum blockchain
+- **Responsive UI**: Built with Tailwind CSS, Chakra UI, Framer Motion, and ShadCN UI for a clean, accessible interface
 
-- **Blockchain-Based Voting**: Smart contracts manage elections, enforce one-vote-per-user, and compute results on Ethereum (Sepolia testnet).
-- **Role-Based Access**: Distinct flows for Admins (create/start/end elections, manage users/candidates) and Voters (OTP login, cast vote).
-- **Wallet Integration**: MetaMask wallet authentication ensures secure vote submission and blockchain interaction.
-- **OTP Email Verification**: SendGrid integration for verifying voter identity via email OTP.
-- **Real-Time Results**: Frontend listens to blockchain events for live result updates.
-- **Secure Media Handling**: Candidate images stored in Cloudinary.
-- **Auditability**: Vote transactions are immutable and publicly verifiable on the Ethereum blockchain.
-- **Responsive UI**: Built with Tailwind CSS, Chakra UI, Framer Motion, and ShadCN UI for a clean, accessible interface.
-
----
-
-## 🧱 Tech Stack
+## Tech Stack
 
 | Layer              | Technologies                                                             |
 | ------------------ | ------------------------------------------------------------------------ |
@@ -28,9 +24,7 @@ Ballotix is a decentralized, secure, and transparent e-voting platform designed 
 | **Blockchain**     | Solidity, Ethereum (Sepolia Testnet), Web3.js, MetaMask                  |
 | **DevOps/Testing** | Docker, GitHub Actions, Postman, Jest, Mocha/Chai, React Testing Library |
 
----
-
-## 📂 Project Structure
+## Project Structure
 
 ```
 ballotix-blockchain-voting/
@@ -55,9 +49,7 @@ ballotix-blockchain-voting/
 └── README.md
 ```
 
----
-
-## 🛠️ Setup & Installation
+## Setup & Installation
 
 ### 1. Clone the Repository
 
@@ -111,9 +103,7 @@ npm run dev
 
 Make sure MetaMask is installed in your browser and connected to the Sepolia testnet.
 
----
-
-## 🧪 Testing
+## Testing
 
 ### Smart Contracts
 
@@ -137,18 +127,14 @@ Tests include:
 - Candidate display and result rendering
 - Voting interaction and MetaMask signing
 
----
-
-## 📄 Documentation
+## Documentation
 
 - [User Guide](docs/ballotix_user_guide.pdf)
-- [Smart Contract Workflow](docs/Smart%20Contract%20Workflow.png)\_
+- [Smart Contract Workflow](docs/Smart%20Contract%20Workflow.png)
 - [System Architecture](docs/System%20Architecture.png)
 - [Final Report](docs/final_project_report_ballotix.pdf)
 
----
-
-## 📦 Deployment
+## Deployment
 
 - **Frontend**: Netlify (Free Tier)
 - **Backend**: Render (Free Tier)
@@ -158,9 +144,7 @@ Tests include:
   - Integrate ZKPs for full voter anonymity
   - Add multi-language support & mobile app
 
----
-
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a branch: `git checkout -b feature/new-feature`
@@ -168,15 +152,11 @@ Tests include:
 4. Push to the branch: `git push origin feature/new-feature`
 5. Open a pull request
 
----
-
-## 📜 License
+## License
 
 MIT © 2025 Sinel Nemsara
 
----
-
-## 📬 Contact
+## Contact
 
 **Project Author**: Sinel Nemsara  
 **Supervisor**: Mr. Gayan Perera  
